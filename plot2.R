@@ -6,7 +6,7 @@ sampledata <- fread("household_power_consumption.txt",nrows = 100, na.strings = 
 subdata1<-read.table(pipe('grep "^[1-2]/2/2007" "household_power_consumption.txt"'),sep = ";",na.strings = "?")
 names(subdata1)<-names(sampledata)
 #hist(subdata1$Global_active_power,main="Global Active Power",xlab = "Global Active Power(Kilowatts)",col="RED")
-#library(dplyr)
+library(dplyr)
 subdata1<- mutate(subdata1,DateF = as.Date(Date,format("%d/%m/%Y")))
 #class(subdata1$DateF)
 subdata1$TMSTP<- strptime(paste(subdata1$Date,subdata1$Time),"%d/%m/%Y %H:%M:%S")
